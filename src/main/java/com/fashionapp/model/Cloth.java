@@ -13,6 +13,7 @@ public class Cloth {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Enumerated(EnumType.STRING)
@@ -24,7 +25,14 @@ public class Cloth {
 
     private String imageUrl;
 
+    @Column(nullable = false)
+    private Integer stock = 0;
+
+    private Integer rating = 0;
+
     private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
 
     public Cloth() {}
 
@@ -76,6 +84,22 @@ public class Cloth {
         this.imageUrl = imageUrl;
     }
 
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -83,4 +107,13 @@ public class Cloth {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }
+

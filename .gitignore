@@ -1,9 +1,24 @@
+# Maven
 target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Logs
 *.log
+
+# Compiled files
 *.class
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Build files
 *.jar
 *.war
-*.iml
-.idea/
-node_modules/
-.env
