@@ -1,6 +1,7 @@
 package com.fashionapp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,10 +16,16 @@ public class Review {
     @JoinColumn(name = "cloth_id", nullable = false)
     private Cloth cloth;
 
+    @NotNull(message = "Rating is required")
+    @Min(value = 1, message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating must not exceed 5")
     private Integer rating;
 
+    @Size(max = 1000, message = "Comment must not exceed 1000 characters")
     private String comment;
 
+    @NotBlank(message = "Reviewer name is required")
+    @Size(min = 2, max = 100, message = "Reviewer name must be between 2 and 100 characters")
     private String reviewerName;
 
     private LocalDateTime createdAt;
@@ -71,6 +78,17 @@ public class Review {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", clothId=" + (cloth != null ? cloth.getId() : null) +
+                ", rating=" + rating +
+                ", reviewerName='" + reviewerName + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }
 

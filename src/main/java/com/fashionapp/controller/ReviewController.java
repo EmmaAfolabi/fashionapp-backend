@@ -4,6 +4,7 @@ import com.fashionapp.model.Review;
 import com.fashionapp.service.ReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +27,7 @@ public class ReviewController {
 
     @PostMapping("/cloth/{clothId}")
     @Operation(summary = "Add review for cloth", description = "Create a new review for a specific cloth item")
-    public ResponseEntity<Review> addReview(@PathVariable Long clothId, @RequestBody Review review) {
+    public ResponseEntity<Review> addReview(@PathVariable Long clothId, @Valid @RequestBody Review review) {
         Review createdReview = reviewService.addReview(clothId, review);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdReview);
     }

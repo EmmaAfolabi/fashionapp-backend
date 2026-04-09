@@ -1,6 +1,7 @@
 package com.fashionapp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,18 +15,25 @@ public class Cloth {
     private Long id;
 
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "Name is required")
+    @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
     private String name;
 
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @DecimalMin(value = "0.01", message = "Price must be greater than zero")
+    @NotNull(message = "Price is required")
     private BigDecimal price;
 
+    @Size(max = 500, message = "Description must not exceed 500 characters")
     private String description;
 
+    @Pattern(regexp = "^(https?://)?[^\\s]+$", message = "Invalid image URL format")
     private String imageUrl;
 
     @Column(nullable = false)
+    @Min(value = 0, message = "Stock cannot be negative")
     private Integer stock = 0;
 
     private Integer rating = 0;

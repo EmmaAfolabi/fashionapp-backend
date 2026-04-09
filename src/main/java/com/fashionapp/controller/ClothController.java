@@ -6,6 +6,7 @@ import com.fashionapp.service.ClothService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,7 +29,7 @@ public class ClothController {
 
     @PostMapping
     @Operation(summary = "Add a new cloth", description = "Create a new cloth item in the inventory")
-    public ResponseEntity<Cloth> addCloth(@RequestBody Cloth cloth) {
+    public ResponseEntity<Cloth> addCloth(@Valid @RequestBody Cloth cloth) {
         Cloth createdCloth = clothService.addCloth(cloth);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCloth);
     }
@@ -51,7 +52,7 @@ public class ClothController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update cloth", description = "Update an existing cloth item")
-    public ResponseEntity<Cloth> updateCloth(@PathVariable Long id, @RequestBody Cloth clothDetails) {
+    public ResponseEntity<Cloth> updateCloth(@PathVariable Long id, @Valid @RequestBody Cloth clothDetails) {
         Cloth updatedCloth = clothService.updateCloth(id, clothDetails);
         return ResponseEntity.ok(updatedCloth);
     }

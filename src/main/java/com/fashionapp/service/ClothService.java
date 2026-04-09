@@ -21,7 +21,6 @@ public class ClothService {
 
     private static final Logger logger = LoggerFactory.getLogger(ClothService.class);
 
-    @Autowired
     private final ClothRepository clothRepository;
 
     public ClothService(ClothRepository clothRepository) {

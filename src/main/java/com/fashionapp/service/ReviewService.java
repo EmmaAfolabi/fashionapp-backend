@@ -77,7 +77,8 @@ public class ReviewService {
     private void updateClothRating(Long clothId) {
         Double averageRating = reviewRepository.getAverageRatingForCloth(clothId);
 
-        Cloth cloth = clothRepository.findById(clothId).orElseThrow();
+        Cloth cloth = clothRepository.findById(clothId)
+                .orElseThrow(() -> new ResourceNotFoundException("Cloth not found with ID: " + clothId));
         cloth.setRating(averageRating != null ? averageRating.intValue() : 0);
         clothRepository.save(cloth);
     }
