@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_DB: fashiondb
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Emmanuel
+      POSTGRES_PASSWORD:
     ports:
       - "5432:5432"
     volumes:
@@ -27,7 +27,7 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/fashiondb
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: Emmanuel
+      SPRING_DATASOURCE_PASSWORD:
       SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
     ports:
       - "8080:8080"
